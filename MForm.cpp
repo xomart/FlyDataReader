@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <math.h>
 #pragma hdrstop
 
 #include "MForm.h"
@@ -15,6 +16,46 @@
 #pragma resource "*.dfm"
 #pragma pack (push, 1)
 using namespace std;
+const int rr = 500;
+
+enum SK_TYPE { _SK_ASK1975 = 0, _SK_GSK     = 1, _SK_GSKZ  = 2, _SK_ASKTES = 6, 
+			   _SK_ASKTE   = 7, _SK_OSK1975 = 8, _SK_OSKTE = 9, _SK_OSKTES = 10, 
+			   _SK_ASK2000 =11, _SK_OSK2000 =12, _SK_RLN   = 101};
+
+//------------------------------------------------------------------------------- 
+// Возможные события, наступление которых отслеживавет модель движения
+//------------------------------------------------------------------------------- 
+enum ModEventName{
+	ModEvent_EMPTY = 0,				// Признак отсутствия события ---> отсутствия расчёта параметров	 
+	ModEvent_INIT = 1,				// Инициализация МД
+	ModEvent_STEP = 2,				// Выполнен один шаг интегрирования	 
+	ModEvent_BKSTEP = 3,			// Отшагивание в пределах витка для уточнения чего либо
+
+	ModEvent_DUON = 4,				// 	 
+	ModEvent_DUSTEPON = 5,			// 	 
+	ModEvent_DUOFF = 6,				// 	 
+
+	ModEvent_VITVU = 7,				// Восходящий узел витка	 
+	ModEvent_VITNU = 8,				// Нисходящий узел витка
+	ModEvent_HMIN = 9,				// Минимальная высота
+	ModEvent_HMAX = 10,				// Максимальная высота
+	ModEvent_RMIN = 11,				// Минимальный радиус
+	ModEvent_RMAX = 12,				// Максимальный радиус
+	ModEvent_SHADOWBEG = 13,		// Начало тени
+	ModEvent_SHADOWEND = 14,		// Конец тени
+
+	ModEvent_ONBREAKTIME = 15,		// Достигнут предельный момент времени заданный параметром notFurtherTime в функции GoStepA
+	ModEvent_ONTIME = 16,			// Выполнено прогнозирование до витка
+	ModEvent_ONVIT = 17,			// Выполнено прогнозирование до заданного момента времени
+	ModEvent_ONARG = 18,			// Выполнено прогнозирование до заданного аргумента широты
+
+	ModEvent_ZRVBEG = 100,			// Начало ЗРВ
+	ModEvent_ZRVEND = 101,			// Конец ЗРВ
+	ModEvent_ZRVPARAM = 102			// Момент прохождения параметра ЗРВ
+};
+
+
+AnsiString dig;
 struct TIME {
 	short  h;       // Часы         (0 - 23)
 	short  m;       // Минуты       (0 - 59)
@@ -29,12 +70,20 @@ static TIniFile *FNUfile; // Файл НУ
 
 AnsiString USOFileName = ExtractFileDir(Application->ExeName);
 
+struct TOEl
+{
+double a; // Большая полуось в ДТКМ
+double e; // эксцентриситет
+double i; // Наклонение
+//double  //
+};
+
 struct TFlyData
 {
 int DD;
 int MM;
 int YY;
-double t[4];
+TIME t;
 double X;
 double Y;
 double Z;
@@ -45,12 +94,12 @@ double dolgota; // Долгота
 double shirota; // Широта
 double h;       // Высота
 double n;       // Наклонение
-double period;
-//TIME t;
-int v;
+double period;  // Период
+double R;
+long v;         // Виток для 2000
 };
 
-struct TFlyData peoplej[200];
+struct TFlyData peoplej[rr];
 
 int kadr;
 
@@ -82,15 +131,7 @@ void scenary_status(bool sc_act, AnsiString ScName){
 }
 
 void loadfromf(AnsiString filename,AnsiString out){
-char line[1024];
-ifstream F("filenamefff.txt");
-while(F.getline(line, sizeof(line), '\n'))
-    {    //-------------------------
-        Form1->Memo1->Lines->Append(line);
-        //-------------------------       
-        int l = strlen(line);
-        //ShowMessage(l);
-     }
+
 }
 
 void loadresult(string fname) {   //v4
@@ -110,6 +151,7 @@ void addbf73(int NU){
   Form1->bf73m->Lines->Add("***************************************************************");
   Form1->bf73m->Lines->Add("\n");
   Form1->bf73m->Lines->Add(" Форма 73     НУ-"+IntToStr(NU)+"      N Обьекта");
+  Form1->bf73m->Lines->Add("\n");
 
 }
 
@@ -127,10 +169,20 @@ int load(char * filename);
 int ke;
 
 // DEBUG END
+AnsiString rett(double t){
+  //      M
+  double m = t/60;
+  double s = t-(m*60);
+ return FloatToStr(m)+"."+FloatToStr(s);
+}
 
 void additem(TFlyData *S){
 TDateTime mDT;
-AnsiString St1 = S->t.h+":"+S->t.m;//+":"+S->t.s+".";
+AnsiString timex[3];
+if(S->t.h<10)timex[0] = "0"+IntToStr(S->t.h); else timex[0] = IntToStr(S->t.h);
+if(S->t.m<10)timex[1] = "0"+IntToStr(S->t.m); else timex[1] = IntToStr(S->t.m);
+if(S->t.s<10)timex[2] = "0"+IntToStr(S->t.s); else timex[2] = IntToStr(S->t.s);
+AnsiString St1 = timex[0]+":"+timex[1]+":"+timex[2]+FormatFloat(".000",S->t.d);
 //+":"+S->NN;
 //AnsiString St2 = ":"+S->SS;
 //St += ":"+S->SS+"."+S->ZZZ;
@@ -140,17 +192,21 @@ AnsiString St1 = S->t.h+":"+S->t.m;//+":"+S->t.s+".";
 M = Form1->resultlv->Items->Add();
 M->Caption = IntToStr(kadr);
 M->SubItems->Add(St1);
-M->SubItems->Add(FloatToStr(S->X));
-M->SubItems->Add(FloatToStr(S->Y));
-M->SubItems->Add(FloatToStr(S->Z));
-M->SubItems->Add(FloatToStr(S->Vx));
-M->SubItems->Add(FloatToStr(S->Vy));
-M->SubItems->Add(FloatToStr(S->Vz));
-M->SubItems->Add(FloatToStr(S->dolgota));
-M->SubItems->Add(FloatToStr(S->shirota));
-M->SubItems->Add(FloatToStr(S->h));
-M->SubItems->Add(FloatToStr(S->n));
-M->SubItems->Add(FloatToStr(S->v));
+M->SubItems->Add(FormatFloat("0"+dig,S->X));          // Положение
+M->SubItems->Add(FormatFloat("0"+dig,S->Y));
+M->SubItems->Add(FormatFloat("0"+dig,S->Z));
+M->SubItems->Add(FormatFloat("0"+dig,S->Vx));         // Скорости
+M->SubItems->Add(FormatFloat("0"+dig,S->Vy));
+M->SubItems->Add(FormatFloat("0"+dig,S->Vz));
+M->SubItems->Add(FormatFloat("0.000",S->dolgota));    // Долгота
+M->SubItems->Add(FormatFloat("0.000",S->shirota));    // Широта
+M->SubItems->Add(FormatFloat("000.000",S->h));          // Высота
+M->SubItems->Add(FormatFloat("0000.0000",S->R));          // Высота
+int m = S->period/60;
+//int s = FormatFloat("00.",S->period/60);
+M->SubItems->Add(IntToStr(m)+"."+FormatFloat("00.",S->period-(m*60)));     // Наклонение
+//M->SubItems->Add(S->period);
+M->SubItems->Add(FloatToStr(S->v));          // Виток
 }
 
 char razdelitel[]=" ,./;:";
@@ -158,7 +214,10 @@ int n; // Колличество элементов массива
 //TFlyData* FDMas = new TFlyData[n];  // Рабочий дин. массив
 
 void AddXY(double X, double Y){
- Form1->TC->Series[0]->AddXY(X,Y,"", clWhite);
+//if(X>179) Form1->TC->Series[0]->AddXY(X-360,Y,"", clWhite); else
+//Form1->TC->Series[0]->AddXY(X,Y,"", clWhite);
+double lon_new = fmod((X+180),360)-180;
+Form1->TC->Series[0]->AddXY(lon_new,Y,"", clWhite);
 }
 
 void AddXYh(double X, double Y){
@@ -183,7 +242,7 @@ void Nresult(){
     additem(peoplej);
 }
 		f.read((char*)&peoplej, sizeof(peoplej) );
-	} else Form1->Label50->Caption="VAR 3 - No File";
+	} //else Form1->Label50->Caption="VAR 3 - No File";
 	f.close();
 }
 
@@ -286,16 +345,17 @@ void DataToChart(){
 }
 
 void loadload(AnsiString filename){ // V1
-int SI = Form1->showiter->Text.ToInt();
+int ST = Form1->showiter->Text.ToInt();
+int SI = Form1->Edit19->Text.ToInt();
 ifstream fin;
     fin.open(filename.c_str(), std::ios::binary);    //    std::ios::binary ios::binary | ios::trunc
     if(fin.is_open()){
     fin.read(reinterpret_cast<char*>(peoplej), SI * sizeof(TFlyData));
-    fin.close();  for (int k = 0; k<SI; k++)
+    fin.close();  for (int k = ST; k<SI; k++)
 {
     kadr++;
-    AddXY(peoplej[k].dolgota,peoplej[k].shirota);
-    AddXYh(peoplej[k].h,k);
+    AddXY(peoplej[k].dolgota,peoplej[k].shirota);   // Fligt Trace
+    AddXYh(k,peoplej[k].R);                         // H
     additem(&peoplej[k]);
 } }
 
@@ -305,9 +365,9 @@ void load2(AnsiString filename){  // Финальный вариант
 ifstream fin;
     fin.open(filename.c_str(), std::ios::binary);
     if(fin.is_open()){
-    fin.read((char *)peoplej, 200*sizeof(TFlyData));
+    fin.read((char *)peoplej, rr*sizeof(TFlyData));
     fin.close();
-    for (int k = 0; k<200; k++)
+    for (int k = 0; k<rr; k++)
 {
     kadr++;
     AddXY(peoplej[k].dolgota,peoplej[k].shirota);
@@ -346,7 +406,7 @@ void __fastcall TForm1::Button3Click(TObject *Sender)
 double temp_d;
 temp_d = StrToFloat(Edit6->Text);
 if(temp_d>180)
-temp_d = (360 - StrToFloat(Edit6->Text))*-1;
+//temp_d = (360 - StrToFloat(Edit6->Text))*-1;
 
 TC->Series[0]->AddXY(temp_d,StrToFloat(Edit5->Text),"", clWhite);
 }
@@ -360,26 +420,10 @@ kadr=0;
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
-
-TC->BottomAxis->SetMinMax(0,360);
+dig=".0000";
+TC->BottomAxis->SetMinMax(-180,180);
 TC->LeftAxis->SetMinMax(-90,90);
-Hgr->LeftAxis->SetMinMax(100,500);
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::Button2Click(TObject *Sender)
-{
-//load(filename);
-load(Edit19->Text.c_str());
-//Label1->Caption=person
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::Button5Click(TObject *Sender)
-{
-    //struct TFlyData people[] = { 104, 51, 194, 122, 48, 3195, 137, 43, 196 };
-    //int nt = sizeof(people) / sizeof(people[0]);
-
-    //save(filename, people, nt);
-    //Label1->Caption=IntToStr(nt);
+//Hgr->LeftAxis->SetMinMax(100,500);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::SaveNUClick(TObject *Sender)
@@ -395,16 +439,27 @@ FNUfile->WriteString("StateVector","Z",svz->Text);
 FNUfile->WriteString("StateVector","Vx",svvx->Text);
 FNUfile->WriteString("StateVector","Vy",svvy->Text);
 FNUfile->WriteString("StateVector","Vz",svvz->Text);
-FNUfile->WriteString("DateTime","StartDate",DateToStr(StartDatePicker->Date));
-FNUfile->WriteString("DateTime","StartTime",TimeToStr(StartTimePicker->Time));
-FNUfile->WriteString("DateTime","EndDate",DateToStr(EndDatePicker->Date));
-FNUfile->WriteString("DateTime","EndTime",TimeToStr(EndTimePicker->Time));
+FNUfile->WriteString("DateTime","SD_D",DateToStr(StartDatePicker->Date).SubString(0,2));
+FNUfile->WriteString("DateTime","SD_M",DateToStr(StartDatePicker->Date).SubString(4,2));
+FNUfile->WriteString("DateTime","SD_Y",DateToStr(StartDatePicker->Date).SubString(7,4));
+FNUfile->WriteString("DateTime","ST_H",nhh->Text);
+FNUfile->WriteString("DateTime","ST_M",nnn->Text);
+FNUfile->WriteString("DateTime","ST_S",nss->Text);
+FNUfile->WriteString("DateTime","ST_Z","0."+nzzz->Text);
+FNUfile->WriteString("DateTime","ED_D",DateToStr(EndDatePicker->Date).SubString(0,2));
+FNUfile->WriteString("DateTime","ED_M",DateToStr(EndDatePicker->Date).SubString(4,2));
+FNUfile->WriteString("DateTime","ED_Y",DateToStr(EndDatePicker->Date).SubString(7,4));
+FNUfile->WriteString("DateTime","ET_H",khh->Text);
+FNUfile->WriteString("DateTime","ET_M",knn->Text);
+FNUfile->WriteString("DateTime","ET_S",kss->Text);
+FNUfile->WriteString("DateTime","ET_Z","0."+kzzz->Text);
 FNUfile->WriteString("SK","SKNum",skn->ItemIndex);
 FNUfile->WriteString("KA","Mass",mass->Text);
 FNUfile->WriteString("KA","Fuel",fuel->Text);
 FNUfile->WriteString("KA","Sb",sb->Text);
 FNUfile->WriteString("KA","Sd",sd->Text);
 FNUfile->WriteString("Misc","Vitok",vitok->Text);
+FNUfile->WriteString("Misc","SK",skn->ItemIndex);
 if(lsf->Checked){
 FNUfile->WriteString("LSF","Num",lsfn->Text);
 if(sun->Checked)FNUfile->WriteString("LSF","Sun","1");
@@ -463,20 +518,21 @@ for (int i = 0; i < 200; i++){
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::loadrClick(TObject *Sender)
-{
-loadload("gfds");
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::N1Click(TObject *Sender)
 {
 //resultlv->ItemFocused->~TListItem()
+PageControl1->TabIndex=4;
+addbf73(54);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
+TC->Series[0]->Clear();
+Hgr->Series[0]->Clear();
+resultlv->Clear();
+kadr=0;
 if (loadg->Execute())
 {
 loadload(loadg->FileName);
@@ -519,6 +575,47 @@ void __fastcall TForm1::startbClick(TObject *Sender)
 int Rc;
 Rc = WinExec("Fly.exe", SW_SHOWMINNOACTIVE);
 panr->Caption=IntToStr(Rc);
+TC->Series[0]->Clear();
+Hgr->Series[0]->Clear();
+resultlv->Clear();
+kadr=0;
+//if (loadg->Execute())
+//{
+lt->Enabled=1;
+//}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::d4Click(TObject *Sender)
+{
+dig=".0000";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::d6Click(TObject *Sender)
+{
+dig=".000000";        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::d8Click(TObject *Sender)
+{
+dig=".00000000";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ltTimer(TObject *Sender)
+{
+loadload("out.dat");
+lt->Enabled=0;
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+loadload("out.dat");        
 }
 //---------------------------------------------------------------------------
 

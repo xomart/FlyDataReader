@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 316
-  Top = 297
+  Left = 286
+  Top = 263
   Width = 925
   Height = 550
   Caption = #1055#1054' '#1063#1090#1077#1085#1080#1103' '#1088#1077#1079#1091#1083#1100#1090#1072#1090#1086#1074' '#1088#1072#1073#1086#1090#1099' '#1052#1044' Fly'
@@ -20,9 +20,9 @@ object Form1: TForm1
     Top = 0
     Width = 909
     Height = 511
-    ActivePage = TabSheet5
+    ActivePage = TabSheet12
     Align = alClient
-    TabIndex = 4
+    TabIndex = 7
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1088#1090#1072
@@ -39,30 +39,6 @@ object Form1: TForm1
         Width = 6
         Height = 13
         Caption = '0'
-      end
-      object Label37: TLabel
-        Left = 672
-        Top = 152
-        Width = 63
-        Height = 13
-        Caption = #1054#1090#1083#1072#1076#1086#1095#1085#1072#1103':'
-      end
-      object Label49: TLabel
-        Left = 672
-        Top = 176
-        Width = 38
-        Height = 13
-        Caption = 'Label49'
-      end
-      object loadr: TButton
-        Left = 672
-        Top = 0
-        Width = 145
-        Height = 25
-        Cursor = crHandPoint
-        Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100' '#1088#1077#1079#1091#1083#1100#1090#1072#1090#1099
-        TabOrder = 0
-        OnClick = loadrClick
       end
       object TC: TChart
         Left = 0
@@ -40203,7 +40179,7 @@ object Form1: TForm1
         View3DWalls = False
         BevelOuter = bvNone
         BevelWidth = 2
-        TabOrder = 1
+        TabOrder = 0
         object Series1: TLineSeries
           Marks.ArrowLength = 8
           Marks.Style = smsLabelPercentTotal
@@ -40227,12 +40203,12 @@ object Form1: TForm1
         end
       end
       object Button4: TButton
-        Left = 824
+        Left = 672
         Top = 0
-        Width = 75
+        Width = 225
         Height = 25
-        Caption = #1054#1095#1080#1089#1090#1080#1090#1100
-        TabOrder = 2
+        Caption = #1054#1095#1080#1089#1090#1080#1090#1100' '#1074#1089#1105
+        TabOrder = 1
         OnClick = Button4Click
       end
       object GroupBox4: TGroupBox
@@ -40241,7 +40217,7 @@ object Form1: TForm1
         Width = 169
         Height = 113
         Caption = ' '#1044' '#1064' '
-        TabOrder = 3
+        TabOrder = 2
         object Label5: TLabel
           Left = 8
           Top = 56
@@ -40282,39 +40258,6 @@ object Form1: TForm1
           OnClick = Button3Click
         end
       end
-      object Button2: TButton
-        Left = 824
-        Top = 152
-        Width = 75
-        Height = 25
-        Caption = 'Load'
-        TabOrder = 4
-        OnClick = Button2Click
-      end
-      object Button5: TButton
-        Left = 824
-        Top = 184
-        Width = 75
-        Height = 25
-        Caption = 'Save'
-        TabOrder = 5
-        OnClick = Button5Click
-      end
-      object Memo1: TMemo
-        Left = 672
-        Top = 232
-        Width = 225
-        Height = 129
-        TabOrder = 6
-      end
-      object Edit19: TEdit
-        Left = 672
-        Top = 208
-        Width = 145
-        Height = 21
-        TabOrder = 7
-        Text = 'Edit19'
-      end
       object startb: TPanel
         Left = 672
         Top = 368
@@ -40330,7 +40273,7 @@ object Form1: TForm1
         Font.Name = 'Arial'
         Font.Style = [fsItalic]
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 3
         OnClick = startbClick
       end
       object panr: TPanel
@@ -40346,7 +40289,7 @@ object Form1: TForm1
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 4
       end
     end
     object TabSheet2: TTabSheet
@@ -40376,7 +40319,7 @@ object Form1: TForm1
               end
               item
                 Caption = #1044#1052#1042
-                Width = 200
+                Width = 110
               end
               item
                 Caption = 'X'
@@ -40415,11 +40358,15 @@ object Form1: TForm1
                 Width = 100
               end
               item
+                Caption = 'R'
+                Width = 80
+              end
+              item
                 Caption = #1055#1077#1088#1080#1086#1076
+                Width = 90
               end
               item
                 Caption = #1042#1080#1090#1086#1082
-                Width = 90
               end>
             Font.Charset = RUSSIAN_CHARSET
             Font.Color = clWindowText
@@ -40484,18 +40431,18 @@ object Form1: TForm1
         Caption = #1057#1050
       end
       object Label44: TLabel
-        Left = 16
-        Top = 323
+        Left = 400
+        Top = 251
         Width = 63
         Height = 13
         Caption = #1064#1072#1075' '#1088#1072#1089#1095#1105#1090#1072
       end
       object Label45: TLabel
-        Left = 209
-        Top = 322
-        Width = 6
+        Left = 545
+        Top = 250
+        Width = 14
         Height = 13
-        Caption = #1089
+        Caption = #1084#1089
       end
       object GroupBox1: TGroupBox
         Left = 8
@@ -40612,9 +40559,9 @@ object Form1: TForm1
         end
       end
       object SaveNU: TButton
-        Left = 32
-        Top = 272
-        Width = 153
+        Left = 8
+        Top = 240
+        Width = 217
         Height = 33
         Cursor = crHandPoint
         Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
@@ -40715,9 +40662,9 @@ object Form1: TForm1
         Width = 113
         Height = 21
         ItemHeight = 13
-        ItemIndex = 0
+        ItemIndex = 8
         TabOrder = 3
-        Text = #1040#1057#1050' 1975 '#1075'.'
+        Text = #1043#1057#1050
         Items.Strings = (
           #1040#1057#1050' 1975 '#1075'.'
           #1040#1057#1050' 2000 '#1075'.'
@@ -40730,10 +40677,10 @@ object Form1: TForm1
           #1043#1057#1050)
       end
       object GroupBox6: TGroupBox
-        Left = 320
-        Top = 312
-        Width = 241
-        Height = 57
+        Left = 232
+        Top = 304
+        Width = 329
+        Height = 65
         Caption = ' '#1050#1083#1102#1095#1080' '#1053#1059' '
         Enabled = False
         TabOrder = 4
@@ -40808,13 +40755,6 @@ object Form1: TForm1
           Width = 129
           Height = 33
           TabOrder = 0
-          object Label50: TLabel
-            Left = 8
-            Top = 24
-            Width = 38
-            Height = 13
-            Caption = 'Label50'
-          end
           object lsf: TCheckBox
             Left = 7
             Top = 10
@@ -41070,10 +41010,31 @@ object Form1: TForm1
       object GroupBox16: TGroupBox
         Left = 232
         Top = 136
-        Width = 201
+        Width = 249
         Height = 49
         Caption = ' '#1042#1088#1077#1084#1103' '#1085#1072#1095#1072#1083#1072' '#1084#1086#1076#1077#1083#1080#1088#1086#1074#1072#1085#1080#1103' '
         TabOrder = 7
+        object Label50: TLabel
+          Left = 131
+          Top = 20
+          Width = 3
+          Height = 13
+          Caption = ':'
+        end
+        object Label66: TLabel
+          Left = 163
+          Top = 20
+          Width = 3
+          Height = 13
+          Caption = ':'
+        end
+        object Label67: TLabel
+          Left = 195
+          Top = 21
+          Width = 3
+          Height = 13
+          Caption = '.'
+        end
         object StartDatePicker: TDateTimePicker
           Left = 8
           Top = 16
@@ -41090,29 +41051,70 @@ object Form1: TForm1
           ParseInput = False
           TabOrder = 0
         end
-        object StartTimePicker: TDateTimePicker
+        object nhh: TEdit
           Left = 104
           Top = 16
-          Width = 89
+          Width = 25
           Height = 21
-          CalAlignment = dtaLeft
-          Date = 44920.1944938657
-          Format = 'HH:mm:ss'
-          Time = 44920.1944938657
-          DateFormat = dfShort
-          DateMode = dmComboBox
-          Kind = dtkTime
-          ParseInput = False
+          MaxLength = 2
           TabOrder = 1
+          Text = '00'
+        end
+        object nnn: TEdit
+          Left = 136
+          Top = 16
+          Width = 25
+          Height = 21
+          MaxLength = 2
+          TabOrder = 2
+          Text = '00'
+        end
+        object nss: TEdit
+          Left = 168
+          Top = 16
+          Width = 25
+          Height = 21
+          TabOrder = 3
+          Text = '00'
+        end
+        object nzzz: TEdit
+          Left = 200
+          Top = 16
+          Width = 33
+          Height = 21
+          MaxLength = 3
+          TabOrder = 4
+          Text = '748'
         end
       end
       object GroupBox17: TGroupBox
         Left = 232
         Top = 192
-        Width = 201
+        Width = 249
         Height = 49
         Caption = ' '#1042#1088#1077#1084#1103' '#1086#1082#1086#1085#1095#1072#1085#1080#1103' '#1084#1086#1076#1077#1083#1080#1088#1086#1074#1072#1085#1080#1103' '
         TabOrder = 8
+        object Label68: TLabel
+          Left = 131
+          Top = 20
+          Width = 3
+          Height = 13
+          Caption = ':'
+        end
+        object Label69: TLabel
+          Left = 163
+          Top = 20
+          Width = 3
+          Height = 13
+          Caption = ':'
+        end
+        object Label70: TLabel
+          Left = 195
+          Top = 21
+          Width = 3
+          Height = 13
+          Caption = '.'
+        end
         object EndDatePicker: TDateTimePicker
           Left = 8
           Top = 16
@@ -41129,34 +41131,54 @@ object Form1: TForm1
           ParseInput = False
           TabOrder = 0
         end
-        object EndTimePicker: TDateTimePicker
+        object khh: TEdit
           Left = 104
           Top = 16
-          Width = 89
+          Width = 25
           Height = 21
-          CalAlignment = dtaLeft
-          Date = 44920.1944938657
-          Format = 'HH:mm:ss'
-          Time = 44920.1944938657
-          DateFormat = dfShort
-          DateMode = dmComboBox
-          Kind = dtkTime
-          ParseInput = False
+          MaxLength = 2
           TabOrder = 1
+          Text = '00'
+        end
+        object knn: TEdit
+          Left = 136
+          Top = 16
+          Width = 25
+          Height = 21
+          MaxLength = 2
+          TabOrder = 2
+          Text = '00'
+        end
+        object kss: TEdit
+          Left = 168
+          Top = 16
+          Width = 25
+          Height = 21
+          TabOrder = 3
+          Text = '00'
+        end
+        object kzzz: TEdit
+          Left = 200
+          Top = 16
+          Width = 33
+          Height = 21
+          MaxLength = 3
+          TabOrder = 4
+          Text = '748'
         end
       end
       object Edit18: TEdit
-        Left = 96
-        Top = 320
-        Width = 105
+        Left = 480
+        Top = 248
+        Width = 57
         Height = 21
         TabOrder = 9
-        Text = '0'
+        Text = '500'
       end
       object CheckBox1: TCheckBox
-        Left = 8
-        Top = 240
-        Width = 193
+        Left = 408
+        Top = 280
+        Width = 153
         Height = 17
         Caption = #1055#1088#1080#1079#1085#1072#1082' '#1088#1072#1073#1086#1090#1099' '#1044#1059
         TabOrder = 10
@@ -41316,15 +41338,6 @@ object Form1: TForm1
             TabOrder = 0
           end
         end
-      end
-      object Button10: TButton
-        Left = 576
-        Top = 8
-        Width = 75
-        Height = 25
-        Caption = 'Button10'
-        TabOrder = 1
-        OnClick = Button10Click
       end
     end
     object TabSheet6: TTabSheet
@@ -50013,12 +50026,14 @@ object Form1: TForm1
         BackWall.Brush.Style = bsClear
         MarginBottom = 0
         MarginLeft = 0
-        MarginRight = 0
+        MarginRight = 1
         MarginTop = 0
         Title.Text.Strings = (
-          #1043#1088#1072#1092#1080#1082' '#1080#1079#1084#1077#1085#1077#1085#1080#1103' '#1074#1099#1089#1086#1090#1099)
-        Title.Visible = False
+          #1043#1088#1072#1092#1080#1082' '#1080#1079#1084#1077#1085#1077#1085#1080#1103' '#1074#1099#1089#1086#1090#1099' H/iter')
+        BottomAxis.Title.Caption = #1048#1090#1077#1088#1072#1094#1080#1103
         ClipPoints = False
+        LeftAxis.Title.Caption = #1042#1099#1089#1086#1090#1072' '#1082#1084'.'
+        Legend.Visible = False
         View3D = False
         TabOrder = 4
         object Series3: TLineSeries
@@ -50100,12 +50115,12 @@ object Form1: TForm1
           Left = 8
           Top = 32
           Width = 689
-          Height = 361
+          Height = 393
           ActivePage = TabSheet8
           TabIndex = 0
           TabOrder = 0
           object TabSheet8: TTabSheet
-            Caption = #1053#1059
+            Caption = '  '#1053#1059
             object GroupBox23: TGroupBox
               Left = 8
               Top = 8
@@ -50234,6 +50249,14 @@ object Form1: TForm1
                 ParentFont = False
               end
             end
+            object GroupBox25: TGroupBox
+              Left = 128
+              Top = 8
+              Width = 249
+              Height = 113
+              Caption = ' '#1050#1083#1102#1095#1080' '#1053#1059' '
+              TabOrder = 1
+            end
           end
         end
       end
@@ -50242,11 +50265,58 @@ object Form1: TForm1
       Caption = 'Settings'
       ImageIndex = 7
       object Label65: TLabel
-        Left = 160
+        Left = 208
         Top = 16
-        Width = 112
+        Width = 121
         Height = 13
-        Caption = #1054#1090#1086#1073#1088#1072#1078#1072#1090#1100' '#1080#1090#1077#1088#1072#1094#1080#1081
+        Caption = #1054#1090#1086#1073#1088#1072#1078#1072#1090#1100' '#1080#1090#1077#1088#1072#1094#1080#1081' c'
+      end
+      object Label37: TLabel
+        Left = 317
+        Top = 43
+        Width = 12
+        Height = 13
+        Caption = #1087#1086
+      end
+      object Label49: TLabel
+        Left = 8
+        Top = 416
+        Width = 48
+        Height = 13
+        Caption = #1042#1077#1088#1089#1080#1103':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object version: TLabel
+        Left = 64
+        Top = 416
+        Width = 57
+        Height = 13
+        Caption = '4.17 build'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label71: TLabel
+        Left = 8
+        Top = 440
+        Width = 115
+        Height = 13
+        Caption = #1040#1074#1090#1086#1088': '#1057#1084#1080#1088#1103#1075#1080#1085' '#1052'. '#1048'.'
+      end
+      object Label72: TLabel
+        Left = 8
+        Top = 464
+        Width = 201
+        Height = 13
+        Caption = 'Copyright (C) - SoyuzDeveloperTeam 2023'
       end
       object GroupBox19: TGroupBox
         Left = 8
@@ -50277,62 +50347,78 @@ object Form1: TForm1
       object GroupBox22: TGroupBox
         Left = 8
         Top = 64
-        Width = 329
-        Height = 89
+        Width = 193
+        Height = 57
         Caption = ' '#1042#1072#1088#1080#1072#1085#1090#1099' '#1079#1072#1075#1088#1091#1079#1082#1080' '#1092#1072#1081#1083#1072' '
         TabOrder = 1
         object Button1: TButton
           Left = 8
-          Top = 24
-          Width = 75
-          Height = 25
+          Top = 16
+          Width = 73
+          Height = 33
           Caption = #1042#1072#1088#1080#1072#1085#1090' 1'
           TabOrder = 0
           OnClick = Button1Click
         end
-        object Button12: TButton
+        object Button2: TButton
           Left = 88
           Top = 24
           Width = 75
           Height = 25
-          Caption = #1042#1072#1088#1080#1072#1085#1090' 2'
+          Caption = 'Button2'
           TabOrder = 1
-          OnClick = Button12Click
-        end
-        object Button13: TButton
-          Left = 168
-          Top = 24
-          Width = 75
-          Height = 25
-          Caption = #1042#1072#1088#1080#1072#1085#1090' 3'
-          TabOrder = 2
-          OnClick = Button13Click
-        end
-        object Button15: TButton
-          Left = 248
-          Top = 24
-          Width = 75
-          Height = 25
-          Caption = 'Button15'
-          TabOrder = 3
-          OnClick = Button15Click
-        end
-        object Button11: TButton
-          Left = 16
-          Top = 56
-          Width = 233
-          Height = 25
-          Caption = #1054#1090#1083#1072#1076#1086#1095#1085#1099#1081' '#1074#1072#1088#1080#1072#1085#1090' '#1079#1072#1075#1088#1091#1079#1082#1080' '#1092#1072#1081#1083#1086#1074
-          TabOrder = 4
-          OnClick = Button11Click
+          OnClick = Button2Click
         end
       end
       object showiter: TEdit
-        Left = 280
+        Left = 336
         Top = 13
-        Width = 121
+        Width = 57
         Height = 21
         TabOrder = 2
+        Text = '1'
+      end
+      object GroupBox24: TGroupBox
+        Left = 8
+        Top = 128
+        Width = 169
+        Height = 73
+        Caption = ' '#1042#1099#1074#1086#1076' '#1074#1077#1082#1090#1086#1088#1072' '#1089#1086#1089#1090#1086#1103#1085#1080#1103' '
+        TabOrder = 3
+        object d4: TRadioButton
+          Left = 56
+          Top = 16
+          Width = 65
+          Height = 17
+          Caption = '4 '#1079#1085#1072#1082#1072
+          TabOrder = 0
+          OnClick = d4Click
+        end
+        object d6: TRadioButton
+          Left = 56
+          Top = 32
+          Width = 73
+          Height = 17
+          Caption = '6 '#1079#1085#1072#1082#1086#1074
+          TabOrder = 1
+          OnClick = d6Click
+        end
+        object d8: TRadioButton
+          Left = 56
+          Top = 48
+          Width = 81
+          Height = 17
+          Caption = '8 '#1079#1085#1072#1082#1086#1074
+          TabOrder = 2
+          OnClick = d8Click
+        end
+      end
+      object Edit19: TEdit
+        Left = 336
+        Top = 40
+        Width = 57
+        Height = 21
+        TabOrder = 4
         Text = '200'
       end
     end
@@ -50418,5 +50504,12 @@ object Form1: TForm1
     DefaultExt = 'dat'
     Filter = 'Fly Result File (*.dat)|*.dat'
     Left = 832
+  end
+  object lt: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = ltTimer
+    Left = 872
+    Top = 40
   end
 end
