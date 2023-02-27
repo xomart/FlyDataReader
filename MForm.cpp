@@ -67,6 +67,7 @@ TForm1 *Form1;
 double xmin, xmax, ymin, ymax;
 
 static TIniFile *FNUfile; // Файл НУ
+static TIniFile *NUfile;  //  to view
 
 AnsiString USOFileName = ExtractFileDir(Application->ExeName);
 
@@ -76,6 +77,13 @@ double a; // Большая полуось в ДТКМ
 double e; // эксцентриситет
 double i; // Наклонение
 //double  //
+};
+
+AnsiString foldername;
+
+struct TNU{
+ double pos[3];
+ double vel[3];
 };
 
 struct TFlyData
@@ -143,6 +151,37 @@ void loadresult(string fname) {   //v4
 	f.close();
 }
 
+void ListFiles(AnsiString path, TStrings*  List)
+{
+// Эта процедура выводит список файлов и  вызывает
+// саму себя для всех  каталогов
+TSearchRec sr;
+if (FindFirst(path+"*.*",  faAnyFile, sr) == 0)
+{
+     do
+     {
+         if (sr.Attr &  faDirectory)
+          {
+              if (sr.Name!=".")
+              if  (sr.Name!="..")
+              {
+                  ListFiles(path+sr.Name+"\\",List);// Рекурсивный  вызов
+              }
+          }
+          else
+          {
+           AnsiString  Ext=ExtractFileExt(sr.Name).UpperCase();
+           if  (Ext==".ini") {
+           List->Add(path+sr.Name);
+           Form1->ScenaryTV->Items->AddChild(Form1->ScenaryTV->Items->GetFirstNode(),sr.Name);
+           }
+          }
+     }
+     while  (FindNext(sr) ==  0);
+     FindClose(sr);
+}
+    Application->ProcessMessages();
+}
 
 
 void addbf73(int NU){
@@ -175,6 +214,7 @@ AnsiString rett(double t){
   double s = t-(m*60);
  return FloatToStr(m)+"."+FloatToStr(s);
 }
+
 
 void additem(TFlyData *S){
 TDateTime mDT;
@@ -394,6 +434,32 @@ fclose(f);
 }
 }
 
+void ScanNU(AnsiString Path)
+{
+Form1->ListBox2->Clear();
+TSearchRec tsch_r;
+    if(FindFirst(Path + "*.ini", faAnyFile, tsch_r) == 0)
+    {
+        do
+        {   //--------------------------------
+            Form1->ListBox2->Items->Add(tsch_r.Name);
+        }   //--------------------------------
+        while(FindNext(tsch_r) == 0);
+    }
+ 
+    FindClose(tsch_r);
+}
+
+void loadini(AnsiString fname){
+NUfile = new TIniFile(fname);
+Form1->s_vsx->Caption = NUfile->ReadString("StateVector","X",0);
+Form1->s_vsy->Caption = NUfile->ReadString("StateVector","Y",0);
+Form1->s_vsz->Caption = NUfile->ReadString("StateVector","Z",0);
+Form1->s_vsvx->Caption = NUfile->ReadString("StateVector","Vx",0);
+Form1->s_vsvy->Caption = NUfile->ReadString("StateVector","Vy",0);
+Form1->s_vsvz->Caption = NUfile->ReadString("StateVector","VZ",0);
+}
+
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -460,6 +526,7 @@ FNUfile->WriteString("KA","Sb",sb->Text);
 FNUfile->WriteString("KA","Sd",sd->Text);
 FNUfile->WriteString("Misc","Vitok",vitok->Text);
 FNUfile->WriteString("Misc","SK",skn->ItemIndex);
+FNUfile->WriteString("Misc","Step",istep->Text);
 if(lsf->Checked){
 FNUfile->WriteString("LSF","Num",lsfn->Text);
 if(sun->Checked)FNUfile->WriteString("LSF","Sun","1");
@@ -503,11 +570,6 @@ void __fastcall TForm1::FormShow(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Button10Click(TObject *Sender)
-{
-addbf73(54);
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button11Click(TObject *Sender)
 {
@@ -616,6 +678,88 @@ lt->Enabled=0;
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
 loadload("out.dat");        
+}
+//---------------------------------------------------------------------------
+HANDLE hProc = NULL;
+void __fastcall TForm1::Button5Click(TObject *Sender)
+{
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+    memset(&pi, 0, sizeof(pi));
+    memset(&si, 0, sizeof(si));
+    si.cb = sizeof(si);
+    if (!CreateProcess(NULL, "Fly.exe", NULL, NULL, false, 0, NULL, NULL, &si, &pi))
+    {
+        ShowMessage("Ошибка запуска");
+    }
+    else
+    {
+        hProc = pi.hProcess;
+        Tmr_1->Enabled = true;
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Tmr_1Timer(TObject *Sender)
+{
+   DWORD exitCode;
+    GetExitCodeProcess(hProc, &exitCode);
+ 
+    if (exitCode != STILL_ACTIVE)
+    {
+        Tmr_1->Enabled = false;
+        loadload("out.dat");
+    }        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ScenaryTVMouseDown(TObject *Sender,
+      TMouseButton Button, TShiftState Shift, int X, int Y)
+{
+if (Button == mbLeft) {
+        // проверяем, что мы кликнули именно по строке узла
+        if (ScenaryTV->GetHitTestInfoAt(X, Y).Contains(htOnItem)) {
+            TTreeNode *NodeClicked = ScenaryTV->GetNodeAt(X, Y);
+            if (NodeClicked) {
+                const AnsiString sNodeText = NodeClicked->Text;
+                groupl->Caption = sNodeText;// работаем с полученным текстом узла
+                ScanNU(GetCurrentDir()+"\\scenary\\"+sNodeText+"\\");
+                foldername = GetCurrentDir()+"\\scenary\\"+sNodeText+"\\";
+            }
+        }
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ListBox2Click(TObject *Sender)
+{
+scenary_st->Caption=ListBox2->Items->Strings[ListBox2->ItemIndex];
+loadini(foldername+ListBox2->Items->Strings[ListBox2->ItemIndex]);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Panel1Click(TObject *Sender)
+{
+panr->Caption=IntToStr(Rc);
+TC->Series[0]->Clear();
+Hgr->Series[0]->Clear();
+resultlv->Clear();
+kadr=0;
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+    memset(&pi, 0, sizeof(pi));
+    memset(&si, 0, sizeof(si));
+    si.cb = sizeof(si);
+    if (!CreateProcess(NULL, "Fly.exe", NULL, NULL, false, 0, NULL, NULL, &si, &pi))
+    {
+        ShowMessage("Ошибка запуска");
+    }
+    else
+    {
+        hProc = pi.hProcess;
+        Tmr_1->Enabled = true;
+    }        
 }
 //---------------------------------------------------------------------------
 

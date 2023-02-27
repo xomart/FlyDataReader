@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 286
-  Top = 263
+  Left = 542
+  Top = 140
   Width = 925
   Height = 550
   Caption = #1055#1054' '#1063#1090#1077#1085#1080#1103' '#1088#1077#1079#1091#1083#1100#1090#1072#1090#1086#1074' '#1088#1072#1073#1086#1090#1099' '#1052#1044' Fly'
@@ -15,14 +15,21 @@ object Form1: TForm1
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object Label59: TLabel
+    Left = 32
+    Top = 124
+    Width = 38
+    Height = 13
+    Caption = 'Label58'
+  end
   object PageControl1: TPageControl
     Left = 0
     Top = 0
     Width = 909
     Height = 511
-    ActivePage = TabSheet12
+    ActivePage = TabSheet7
     Align = alClient
-    TabIndex = 7
+    TabIndex = 6
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1088#1090#1072
@@ -41167,7 +41174,7 @@ object Form1: TForm1
           Text = '748'
         end
       end
-      object Edit18: TEdit
+      object istep: TEdit
         Left = 480
         Top = 248
         Width = 57
@@ -41182,6 +41189,21 @@ object Form1: TForm1
         Height = 17
         Caption = #1055#1088#1080#1079#1085#1072#1082' '#1088#1072#1073#1086#1090#1099' '#1044#1059
         TabOrder = 10
+      end
+      object GroupBox26: TGroupBox
+        Left = 232
+        Top = 372
+        Width = 665
+        Height = 105
+        Caption = ' '#1054#1087#1080#1089#1072#1085#1080#1077' '
+        TabOrder = 11
+        object Label75: TLabel
+          Left = 8
+          Top = 24
+          Width = 56
+          Height = 13
+          Caption = #1053#1072#1079#1074#1072#1085#1080#1077'  '
+        end
       end
     end
     object TabSheet4: TTabSheet
@@ -50068,9 +50090,10 @@ object Form1: TForm1
         Left = 8
         Top = 32
         Width = 169
-        Height = 441
+        Height = 169
         Indent = 19
         TabOrder = 0
+        OnMouseDown = ScenaryTVMouseDown
         Items.Data = {
           08000000220000000000000000000000FFFFFFFFFFFFFFFF0000000000000000
           09C2FBE2E5E4E5EDE8E52A0000000000000000000000FFFFFFFFFFFFFFFF0000
@@ -50111,11 +50134,31 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
         end
+        object Label73: TLabel
+          Left = 208
+          Top = 14
+          Width = 41
+          Height = 13
+          Caption = #1043#1088#1091#1087#1087#1072': '
+        end
+        object groupl: TLabel
+          Left = 256
+          Top = 14
+          Width = 19
+          Height = 13
+          Caption = #1053#1077#1090
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clGreen
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+        end
         object PageControl2: TPageControl
           Left = 8
           Top = 32
           Width = 689
-          Height = 393
+          Height = 385
           ActivePage = TabSheet8
           TabIndex = 0
           TabOrder = 0
@@ -50149,7 +50192,7 @@ object Form1: TForm1
                 Height = 13
                 Caption = 'Z'
               end
-              object Label54: TLabel
+              object s_vsx: TLabel
                 Left = 32
                 Top = 16
                 Width = 33
@@ -50162,7 +50205,7 @@ object Form1: TForm1
                 Font.Style = []
                 ParentFont = False
               end
-              object Label55: TLabel
+              object s_vsy: TLabel
                 Left = 32
                 Top = 32
                 Width = 33
@@ -50175,7 +50218,7 @@ object Form1: TForm1
                 Font.Style = []
                 ParentFont = False
               end
-              object Label56: TLabel
+              object s_vsz: TLabel
                 Left = 32
                 Top = 48
                 Width = 33
@@ -50195,7 +50238,7 @@ object Form1: TForm1
                 Height = 13
                 Caption = 'Vz'
               end
-              object Label58: TLabel
+              object s_vsvz: TLabel
                 Left = 32
                 Top = 96
                 Width = 33
@@ -50208,7 +50251,7 @@ object Form1: TForm1
                 Font.Style = []
                 ParentFont = False
               end
-              object Label59: TLabel
+              object s_vsvy: TLabel
                 Left = 32
                 Top = 80
                 Width = 33
@@ -50235,7 +50278,7 @@ object Form1: TForm1
                 Height = 13
                 Caption = 'Vx'
               end
-              object Label62: TLabel
+              object s_vsvx: TLabel
                 Left = 32
                 Top = 64
                 Width = 33
@@ -50259,6 +50302,32 @@ object Form1: TForm1
             end
           end
         end
+        object Panel1: TPanel
+          Left = 544
+          Top = 421
+          Width = 153
+          Height = 28
+          Cursor = crHandPoint
+          Caption = #1054#1090#1088#1072#1073#1086#1090#1072#1090#1100
+          Color = clSkyBlue
+          Font.Charset = RUSSIAN_CHARSET
+          Font.Color = clGreen
+          Font.Height = -16
+          Font.Name = 'MS Reference Sans Serif'
+          Font.Style = [fsBold, fsItalic]
+          ParentFont = False
+          TabOrder = 1
+          OnClick = Panel1Click
+        end
+      end
+      object ListBox2: TListBox
+        Left = 8
+        Top = 208
+        Width = 169
+        Height = 241
+        ItemHeight = 13
+        TabOrder = 2
+        OnClick = ListBox2Click
       end
     end
     object TabSheet12: TTabSheet
@@ -50296,7 +50365,7 @@ object Form1: TForm1
         Top = 416
         Width = 57
         Height = 13
-        Caption = '4.17 build'
+        Caption = '4.25 build'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
@@ -50421,6 +50490,15 @@ object Form1: TForm1
         TabOrder = 4
         Text = '200'
       end
+      object Button5: TButton
+        Left = 248
+        Top = 144
+        Width = 75
+        Height = 25
+        Caption = 'Button5'
+        TabOrder = 5
+        OnClick = Button5Click
+      end
     end
     object TabSheet13: TTabSheet
       Caption = #1061'-'#1082#1080' '#1050#1040
@@ -50439,48 +50517,328 @@ object Form1: TForm1
           object GroupBox20: TGroupBox
             Left = 8
             Top = 8
-            Width = 329
-            Height = 329
+            Width = 257
+            Height = 441
             Caption = ' '#1055#1086#1083#1086#1078#1077#1085#1080#1077' '#1044#1055#1054' '
             TabOrder = 0
+            object Label58: TLabel
+              Left = 16
+              Top = 36
+              Width = 38
+              Height = 13
+              Caption = 'Label58'
+            end
+            object Edit22: TEdit
+              Left = 72
+              Top = 32
+              Width = 49
+              Height = 21
+              TabOrder = 0
+              Text = '3333'
+            end
+            object Edit23: TEdit
+              Left = 136
+              Top = 32
+              Width = 49
+              Height = 21
+              TabOrder = 1
+              Text = '3333'
+            end
+            object Edit24: TEdit
+              Left = 192
+              Top = 32
+              Width = 49
+              Height = 21
+              TabOrder = 2
+              Text = '3333'
+            end
+            object Edit44: TEdit
+              Left = 136
+              Top = 200
+              Width = 49
+              Height = 21
+              TabOrder = 3
+              Text = '3333'
+            end
+            object Edit46: TEdit
+              Left = 72
+              Top = 224
+              Width = 49
+              Height = 21
+              TabOrder = 4
+              Text = '3333'
+            end
+            object Edit49: TEdit
+              Left = 72
+              Top = 248
+              Width = 49
+              Height = 21
+              TabOrder = 5
+              Text = '3333'
+            end
+            object Edit43: TEdit
+              Left = 72
+              Top = 200
+              Width = 49
+              Height = 21
+              TabOrder = 6
+              Text = '3333'
+            end
+            object Edit40: TEdit
+              Left = 72
+              Top = 176
+              Width = 49
+              Height = 21
+              TabOrder = 7
+              Text = '3333'
+            end
+            object Edit37: TEdit
+              Left = 72
+              Top = 152
+              Width = 49
+              Height = 21
+              TabOrder = 8
+              Text = '3333'
+            end
+            object Edit34: TEdit
+              Left = 72
+              Top = 128
+              Width = 49
+              Height = 21
+              TabOrder = 9
+              Text = '3333'
+            end
+            object Edit31: TEdit
+              Left = 72
+              Top = 104
+              Width = 49
+              Height = 21
+              TabOrder = 10
+              Text = '3333'
+            end
+            object Edit28: TEdit
+              Left = 72
+              Top = 80
+              Width = 49
+              Height = 21
+              TabOrder = 11
+              Text = '3333'
+            end
+            object Edit25: TEdit
+              Left = 72
+              Top = 56
+              Width = 49
+              Height = 21
+              TabOrder = 12
+              Text = '3333'
+            end
+            object Edit26: TEdit
+              Left = 136
+              Top = 56
+              Width = 49
+              Height = 21
+              TabOrder = 13
+              Text = '3333'
+            end
+            object Edit29: TEdit
+              Left = 136
+              Top = 80
+              Width = 49
+              Height = 21
+              TabOrder = 14
+              Text = '3333'
+            end
+            object Edit32: TEdit
+              Left = 136
+              Top = 104
+              Width = 49
+              Height = 21
+              TabOrder = 15
+              Text = '3333'
+            end
+            object Edit35: TEdit
+              Left = 136
+              Top = 128
+              Width = 49
+              Height = 21
+              TabOrder = 16
+              Text = '3333'
+            end
+            object Edit41: TEdit
+              Left = 136
+              Top = 176
+              Width = 49
+              Height = 21
+              TabOrder = 17
+              Text = '3333'
+            end
+            object Edit38: TEdit
+              Left = 136
+              Top = 152
+              Width = 49
+              Height = 21
+              TabOrder = 18
+              Text = '3333'
+            end
+            object Edit39: TEdit
+              Left = 192
+              Top = 152
+              Width = 49
+              Height = 21
+              TabOrder = 19
+              Text = '3333'
+            end
+            object Edit42: TEdit
+              Left = 192
+              Top = 176
+              Width = 49
+              Height = 21
+              TabOrder = 20
+              Text = '3333'
+            end
+            object Edit45: TEdit
+              Left = 192
+              Top = 200
+              Width = 49
+              Height = 21
+              TabOrder = 21
+              Text = '3333'
+            end
+            object Edit48: TEdit
+              Left = 192
+              Top = 224
+              Width = 49
+              Height = 21
+              TabOrder = 22
+              Text = '3333'
+            end
+            object Edit51: TEdit
+              Left = 192
+              Top = 248
+              Width = 49
+              Height = 21
+              TabOrder = 23
+              Text = '3333'
+            end
+            object Edit36: TEdit
+              Left = 192
+              Top = 128
+              Width = 49
+              Height = 21
+              TabOrder = 24
+              Text = '3333'
+            end
+            object Edit33: TEdit
+              Left = 192
+              Top = 104
+              Width = 49
+              Height = 21
+              TabOrder = 25
+              Text = '3333'
+            end
+            object Edit30: TEdit
+              Left = 192
+              Top = 80
+              Width = 49
+              Height = 21
+              TabOrder = 26
+              Text = '3333'
+            end
+            object Edit27: TEdit
+              Left = 192
+              Top = 56
+              Width = 49
+              Height = 21
+              TabOrder = 27
+              Text = '3333'
+            end
           end
           object GroupBox21: TGroupBox
             Left = 344
             Top = 8
-            Width = 289
-            Height = 105
+            Width = 369
+            Height = 233
             Caption = ' '#1057#1050#1044' '
             TabOrder = 1
-            object Label51: TLabel
-              Left = 16
-              Top = 24
-              Width = 7
-              Height = 13
-              Caption = 'X'
-            end
-            object Label63: TLabel
-              Left = 16
-              Top = 40
-              Width = 7
-              Height = 13
-              Caption = 'Y'
-            end
-            object Label64: TLabel
-              Left = 16
-              Top = 56
-              Width = 7
-              Height = 13
-              Caption = 'Z'
-            end
-            object Edit20: TEdit
-              Left = 72
-              Top = 24
-              Width = 121
-              Height = 21
+            object GroupBox27: TGroupBox
+              Left = 8
+              Top = 16
+              Width = 129
+              Height = 97
+              Caption = #1055#1086#1083#1086#1078#1077#1085#1080#1077' '#1074' '#1057#1057#1050
               TabOrder = 0
-              Text = 'Edit20'
+              object Label64: TLabel
+                Left = 8
+                Top = 72
+                Width = 7
+                Height = 13
+                Caption = 'Z'
+              end
+              object Label63: TLabel
+                Left = 8
+                Top = 48
+                Width = 7
+                Height = 13
+                Caption = 'Y'
+              end
+              object Label51: TLabel
+                Left = 8
+                Top = 24
+                Width = 7
+                Height = 13
+                Caption = 'X'
+              end
+              object Label54: TLabel
+                Left = 104
+                Top = 24
+                Width = 16
+                Height = 13
+                Caption = #1084#1084
+              end
+              object Label55: TLabel
+                Left = 104
+                Top = 48
+                Width = 16
+                Height = 13
+                Caption = #1084#1084
+              end
+              object Label56: TLabel
+                Left = 104
+                Top = 72
+                Width = 16
+                Height = 13
+                Caption = #1084#1084
+              end
+              object Edit20: TEdit
+                Left = 23
+                Top = 21
+                Width = 74
+                Height = 21
+                TabOrder = 0
+                Text = '390'
+              end
+              object Edit18: TEdit
+                Left = 23
+                Top = 45
+                Width = 74
+                Height = 21
+                TabOrder = 1
+                Text = '0.0'
+              end
+              object Edit21: TEdit
+                Left = 23
+                Top = 69
+                Width = 74
+                Height = 21
+                TabOrder = 2
+                Text = '0.0'
+              end
             end
           end
+        end
+        object TabSheet15: TTabSheet
+          Caption = #1050#1044#1059'_'#1043#1054#1055
+          ImageIndex = 1
         end
       end
     end
@@ -50510,6 +50868,13 @@ object Form1: TForm1
     Interval = 5000
     OnTimer = ltTimer
     Left = 872
+    Top = 40
+  end
+  object Tmr_1: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = Tmr_1Timer
+    Left = 824
     Top = 40
   end
 end
