@@ -712,7 +712,7 @@ void __fastcall TForm1::Tmr_1Timer(TObject *Sender)
     }        
 }
 //---------------------------------------------------------------------------
-
+AnsiString fna;
 void __fastcall TForm1::ScenaryTVMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
@@ -725,12 +725,13 @@ if (Button == mbLeft) {
                 groupl->Caption = sNodeText;// работаем с полученным текстом узла
                 ScanNU(GetCurrentDir()+"\\scenary\\"+sNodeText+"\\");
                 foldername = GetCurrentDir()+"\\scenary\\"+sNodeText+"\\";
+                fna = "\\scenary\\"+sNodeText+"\\";
             }
         }
     }
 }
 //---------------------------------------------------------------------------
-
+AnsiString fnmm;
 void __fastcall TForm1::ListBox2Click(TObject *Sender)
 {
 scenary_st->Caption=ListBox2->Items->Strings[ListBox2->ItemIndex];
@@ -741,7 +742,6 @@ loadini(foldername+ListBox2->Items->Strings[ListBox2->ItemIndex]);
 
 void __fastcall TForm1::Panel1Click(TObject *Sender)
 {
-panr->Caption=IntToStr(Rc);
 TC->Series[0]->Clear();
 Hgr->Series[0]->Clear();
 resultlv->Clear();
@@ -751,7 +751,11 @@ kadr=0;
     memset(&pi, 0, sizeof(pi));
     memset(&si, 0, sizeof(si));
     si.cb = sizeof(si);
-    if (!CreateProcess(NULL, "Fly.exe", NULL, NULL, false, 0, NULL, NULL, &si, &pi))
+    AnsiString fnname = fna+ListBox2->Items->Strings[ListBox2->ItemIndex];
+    //Label62->Caption = fnname.Delete(1,1);
+    AnsiString s_templ = "Fly.exe "+fnname.Delete(1,1);
+    AnsiString ttuuyy = "Fly.exe testa.ini";
+    if (!CreateProcess(NULL, s_templ.c_str(), NULL, NULL, false, 0, NULL, NULL, &si, &pi))
     {
         ShowMessage("Ошибка запуска");
     }

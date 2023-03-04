@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -27,9 +28,9 @@ object Form1: TForm1
     Top = 0
     Width = 909
     Height = 511
-    ActivePage = TabSheet7
+    ActivePage = TabSheet2
     Align = alClient
-    TabIndex = 6
+    TabIndex = 1
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1088#1090#1072
@@ -50365,7 +50366,7 @@ object Form1: TForm1
         Top = 416
         Width = 57
         Height = 13
-        Caption = '4.25 build'
+        Caption = '4.38 build'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11

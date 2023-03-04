@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -27,9 +28,9 @@ object Form1: TForm1
     Top = 0
     Width = 909
     Height = 511
-    ActivePage = TabSheet7
+    ActivePage = TabSheet13
     Align = alClient
-    TabIndex = 6
+    TabIndex = 8
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1088#1090#1072
@@ -50164,13 +50165,6 @@ object Form1: TForm1
           TabOrder = 0
           object TabSheet8: TTabSheet
             Caption = '  '#1053#1059
-            object Label74: TLabel
-              Left = 104
-              Top = 248
-              Width = 38
-              Height = 13
-              Caption = 'Label74'
-            end
             object GroupBox23: TGroupBox
               Left = 8
               Top = 8
@@ -50307,15 +50301,6 @@ object Form1: TForm1
               Caption = ' '#1050#1083#1102#1095#1080' '#1053#1059' '
               TabOrder = 1
             end
-            object Button10: TButton
-              Left = 160
-              Top = 176
-              Width = 75
-              Height = 25
-              Caption = 'Button10'
-              TabOrder = 2
-              OnClick = Button10Click
-            end
           end
         end
         object Panel1: TPanel
@@ -50333,6 +50318,7 @@ object Form1: TForm1
           Font.Style = [fsBold, fsItalic]
           ParentFont = False
           TabOrder = 1
+          OnClick = Panel1Click
         end
       end
       object ListBox2: TListBox
@@ -50380,7 +50366,7 @@ object Form1: TForm1
         Top = 416
         Width = 57
         Height = 13
-        Caption = '4.25 build'
+        Caption = '4.38 build'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
