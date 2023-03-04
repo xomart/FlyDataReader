@@ -179,8 +179,6 @@ __published:	// IDE-managed Components
         TGroupBox *GroupBox20;
         TGroupBox *GroupBox21;
         TCheckBox *CheckBox2;
-        TGroupBox *GroupBox22;
-        TButton *Button1;
         TGroupBox *GroupBox23;
         TLabel *Label48;
         TLabel *Label52;
@@ -199,7 +197,6 @@ __published:	// IDE-managed Components
         TButton *Button9;
         TChart *Hgr;
         TPanel *startb;
-        TPanel *panr;
         TLabel *Label65;
         TEdit *showiter;
         TLineSeries *Series3;
@@ -229,8 +226,6 @@ __published:	// IDE-managed Components
         TLabel *Label71;
         TLabel *Label72;
         TGroupBox *GroupBox25;
-        TButton *Button2;
-        TButton *Button5;
         TTimer *Tmr_1;
         TGroupBox *GroupBox26;
         TListBox *ListBox2;
@@ -255,8 +250,6 @@ __published:	// IDE-managed Components
         TLabel *Label58;
         TLabel *Label59;
         TEdit *Edit44;
-        TEdit *Edit46;
-        TEdit *Edit49;
         TEdit *Edit43;
         TEdit *Edit40;
         TEdit *Edit37;
@@ -273,12 +266,19 @@ __published:	// IDE-managed Components
         TEdit *Edit39;
         TEdit *Edit42;
         TEdit *Edit45;
-        TEdit *Edit48;
-        TEdit *Edit51;
         TEdit *Edit36;
         TEdit *Edit33;
         TEdit *Edit30;
         TEdit *Edit27;
+        TTabSheet *TabSheet16;
+        TListBox *svlv;
+        TEdit *Edit47;
+        TLabel *Label62;
+        TMemo *Memo1;
+        TButton *Button1;
+        TLabel *Label74;
+        TLabel *Label76;
+        TLabel *Label77;
         void __fastcall Button3Click(TObject *Sender);
         void __fastcall Button4Click(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -290,8 +290,6 @@ __published:	// IDE-managed Components
         void __fastcall Button11Click(TObject *Sender);
         void __fastcall N1Click(TObject *Sender);
         void __fastcall Button1Click(TObject *Sender);
-        void __fastcall Button12Click(TObject *Sender);
-        void __fastcall Button13Click(TObject *Sender);
         void __fastcall Button15Click(TObject *Sender);
         void __fastcall startbClick(TObject *Sender);
         void __fastcall d4Click(TObject *Sender);

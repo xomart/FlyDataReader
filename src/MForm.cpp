@@ -111,35 +111,10 @@ struct TFlyData peoplej[rr];
 
 int kadr;
 
-struct Contact {
-    char number[11];
-    char adress[50];
-    char sname[50];
-};
-
-void loadfileg(){
-  std::ifstream fin("input.dot", std::ios::in | std::ios::binary);
-    // здесь будем хранить считанные структуры
-    std::vector<Contact> vec;
-    // временная переменная
-    Contact temp;
-    // пока есть что читать, цикл продолжается
-    while (fin.read((char*)&temp, sizeof(Contact))) {
-        // запихиваем в конец вектора считанную структуру
-        vec.push_back(temp);
-    };
-    // не забудем закрыть файл
-    fin.close();
-}
-
 void scenary_status(bool sc_act, AnsiString ScName){
  if(sc_act){
        Form1->scenary_st->Caption=ScName;
         } else Form1->scenary_st->Caption="Нет";
-}
-
-void loadfromf(AnsiString filename,AnsiString out){
-
 }
 
 void loadresult(string fname) {   //v4
@@ -197,12 +172,6 @@ void addbf73(int NU){
 // Debug
 char * filename = "result.dat";
 
-//struct person
-//{
-//    char name[20];
-//    int age;
-//};
-
 int save(char * filename, struct TFlyData *p);
 int load(char * filename);
 int ke;
@@ -223,11 +192,6 @@ if(S->t.h<10)timex[0] = "0"+IntToStr(S->t.h); else timex[0] = IntToStr(S->t.h);
 if(S->t.m<10)timex[1] = "0"+IntToStr(S->t.m); else timex[1] = IntToStr(S->t.m);
 if(S->t.s<10)timex[2] = "0"+IntToStr(S->t.s); else timex[2] = IntToStr(S->t.s);
 AnsiString St1 = timex[0]+":"+timex[1]+":"+timex[2]+FormatFloat(".000",S->t.d);
-//+":"+S->NN;
-//AnsiString St2 = ":"+S->SS;
-//St += ":"+S->SS+"."+S->ZZZ;
-//mDT = StrToTime(S->HH+":"+S->NN+":"+S->SS);  +":"+S->SS+"."+S->ZZZ
-//mDT = StrToDateTime();
  TListItem *M;
 M = Form1->resultlv->Items->Add();
 M->Caption = IntToStr(kadr);
@@ -243,9 +207,7 @@ M->SubItems->Add(FormatFloat("0.000",S->shirota));    // Широта
 M->SubItems->Add(FormatFloat("000.000",S->h));          // Высота
 M->SubItems->Add(FormatFloat("0000.0000",S->R));          // Высота
 int m = S->period/60;
-//int s = FormatFloat("00.",S->period/60);
 M->SubItems->Add(IntToStr(m)+"."+FormatFloat("00.",S->period-(m*60)));     // Наклонение
-//M->SubItems->Add(S->period);
 M->SubItems->Add(FloatToStr(S->v));          // Виток
 }
 
@@ -262,12 +224,6 @@ Form1->TC->Series[0]->AddXY(lon_new,Y,"", clWhite);
 
 void AddXYh(double X, double Y){
  Form1->Hgr->Series[0]->AddXY(X,Y,"", clBlue);
-}
-
-void ReadData(){
- //for (int i = n - 1 ; i >= 0; i--) {
-    //cout << dinamich_array[i] << " ";  // ??????? ???????? ???? ?????
- // }
 }
 
 void Nresult(){
@@ -318,73 +274,8 @@ int save(char * filename, struct TFlyData * st, int n)
 }
  
 // загрузка из файла массива структур
-int load(char * filename)
-{
-    FILE * fp;
-    char *c;
-    int m = sizeof(int);
-    int n, i;
 
-    // выделяем память для количества данных
-    int *pti = (int *)malloc(m);
- 
-    if ((fp = fopen(filename, "r")) == NULL)
-    {
-        perror("Error occured while opening file");
-        return 1;
-    }
-    // считываем количество структур
-    c = (char *)pti;
-    while (m>0)
-    {
-        i = getc(fp);
-        if (i == EOF) break;
-        *c = i;
-        c++;
-        m--;
-    }
-    //получаем число элементов
-    n = *pti;
-    ke = n;
- 
-    // выделяем память для считанного массива структур
-    struct TFlyData * ptr = (struct TFlyData *) malloc(n * sizeof(struct TFlyData));
-    c = (char *)ptr;
-    // после записи считываем посимвольно из файла
-    while ((i= getc(fp))!=EOF)
-    {
-        *c = i;
-        c++;
-    }
-    // перебор загруженных элементов и вывод на консоль
-    printf("\n%d people in the file stored\n\n", n);
-for (int k = 0; k<n; k++)
-{
-    kadr++;
-    AddXY((ptr + k)->dolgota,(ptr + k)->shirota);
-    //Form1->ListBox1->Items->Add("Долгота - "+FloatToStr((ptr + k)->dolgota) );
-    additem((ptr + k));
-}
-    Form1->Label1->Caption=IntToStr(n);
-    free(pti);
-    free(ptr);
-    fclose(fp);
-    return 0;
-}
-
-void TestA(){
-//gfd
-}
-
-void DataToChart(){
-
-//for (int k = 0; k<ke; k++)
-//{
-//    AddXY(TFLyData.
-//}    reinterpret_cast<char*>
-}
-
-void loadload(AnsiString filename){ // V1
+void loadload(AnsiString filename){ // V1   WORKING
 int ST = Form1->showiter->Text.ToInt();
 int SI = Form1->Edit19->Text.ToInt();
 ifstream fin;
@@ -399,39 +290,6 @@ ifstream fin;
     additem(&peoplej[k]);
 } }
 
-}
-
-void load2(AnsiString filename){  // Финальный вариант
-ifstream fin;
-    fin.open(filename.c_str(), std::ios::binary);
-    if(fin.is_open()){
-    fin.read((char *)peoplej, rr*sizeof(TFlyData));
-    fin.close();
-    for (int k = 0; k<rr; k++)
-{
-    kadr++;
-    AddXY(peoplej[k].dolgota,peoplej[k].shirota);
-    additem(&peoplej[k]);
-} }
-
-}
-
-void newload(string filename){ // V2
-  FILE* f;
-  f = fopen(filename.c_str(), "wb");
-  fread(peoplej, sizeof(peoplej[0]), 200, f);
-  fclose(f);
-  /*
-    FILE * f = fopen("filename","wb");
-fwrite(MasStruct,sizeof(MasStruct[0]),10,f);
-fclose(f);
-  */
-  for (int k = 0; k<200; k++)
-{
-    kadr++;
-    AddXY(peoplej[k].dolgota,peoplej[k].shirota);
-    additem(&peoplej[k]);
-}
 }
 
 void ScanNU(AnsiString Path)
@@ -603,26 +461,6 @@ loadload(loadg->FileName);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button12Click(TObject *Sender)
-{
-if (loadg->Execute())
-{
-newload(loadg->FileName.c_str());
-}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button13Click(TObject *Sender)
-{
-if (loadg->Execute())
-{
-load(loadg->FileName.c_str());
-}
-}
-//---------------------------------------------------------------------------
-
-
-
 void __fastcall TForm1::Button15Click(TObject *Sender)
 {
 if (loadg->Execute())
@@ -636,7 +474,6 @@ void __fastcall TForm1::startbClick(TObject *Sender)
 {
 int Rc;
 Rc = WinExec("Fly.exe", SW_SHOWMINNOACTIVE);
-panr->Caption=IntToStr(Rc);
 TC->Series[0]->Clear();
 Hgr->Series[0]->Clear();
 resultlv->Clear();
@@ -766,4 +603,6 @@ kadr=0;
     }        
 }
 //---------------------------------------------------------------------------
+
+
 

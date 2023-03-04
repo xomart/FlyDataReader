@@ -3,8 +3,8 @@
 <PROJECT>
   <MACROS>
     <VERSION value="BCB.06.00"/>
-    <PROJECT value="C:\Users\XOMART\Documents\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release\FDR.exe"/>
-    <OBJFILES value="FDR.obj MForm.obj"/>
+    <PROJECT value="C:\Users\XOMART\Documents\VSoyuz\_FlyExecut\Debug\FDR.exe"/>
+    <OBJFILES value="other\FDR.obj other\MForm.obj"/>
     <RESFILES value="FDR.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
@@ -41,10 +41,13 @@
       -IC:\Users\user\Downloads\mac\FlyDataReader -I$(BCB)\include 
       -I$(BCB)\include\vcl -src_suffix cpp -boa"/>
     <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -a1 -b- -k- -vi -c -tW -tWM"/>
-    <PFLAGS value="-$Y- -$L- -$D- -$A8 -v -JPHNE -M"/>
+    <PFLAGS value="-N2C:\Users\XOMART\Documents\FlyDataReader\FlyDataReader\other 
+      -N0C:\Users\XOMART\Documents\FlyDataReader\FlyDataReader\other -$Y- -$L- 
+      -$D- -$A8 -v -JPHNE -M"/>
     <RFLAGS value=""/>
     <AFLAGS value="/mx /w2 /zn"/>
-    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn"/>
+    <LFLAGS value="-IC:\Users\XOMART\Documents\FlyDataReader\FlyDataReader\other -D&quot;&quot; -aa 
+      -Tpe -x -Gn"/>
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
@@ -64,31 +67,33 @@
 
   <IDEOPTIONS>
 [Version Info]
-IncludeVerInfo=0
+IncludeVerInfo=1
 AutoIncBuild=0
-MajorVer=1
-MinorVer=0
+MajorVer=4
+MinorVer=41
 Release=0
 Build=0
 Debug=0
 PreRelease=0
-Special=0
+Special=1
 Private=0
 DLL=0
 Locale=1049
 CodePage=1251
 
 [Version Info Keys]
-CompanyName=
-FileDescription=
-FileVersion=1.0.0.0
-InternalName=
-LegalCopyright=
+CompanyName=SoyuzDeveloperTeam
+FileDescription=Fly Data Reader
+FileVersion=4.41.0.0
+InternalName=FDR
+LegalCopyright=SDT
 LegalTrademarks=
 OriginalFilename=
-ProductName=
+ProductName=VSoyuz
 ProductVersion=1.0.0.0
-Comments=
+Comments=Программа чтения результатов моделирования
+SpecialBuild=
+VSoyuzDEVCODE=VS.014.02-R
 
 [HistoryLists\hlIncludePath]
 Count=2
@@ -108,12 +113,18 @@ Item0=$(BCB)\source\vcl
 Count=1
 Item0=_DEBUG
 
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=C:\Users\XOMART\Documents\FlyDataReader\FlyDataReader\other
+
 [HistoryLists\hlFinalOutputDir]
-Count=4
-Item0=C:\Users\XOMART\Documents\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release\
-Item1=C:\Users\XOMART\Documents\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release
-Item2=D:\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release\
-Item3=D:\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release
+Count=6
+Item0=C:\Users\XOMART\Documents\VSoyuz\_FlyExecut\Debug\
+Item1=C:\Users\XOMART\Documents\VSoyuz\_FlyExecut\Release\
+Item2=C:\Users\XOMART\Documents\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release\
+Item3=C:\Users\XOMART\Documents\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release
+Item4=D:\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release\
+Item5=D:\VSoyuz\Fly_VSoyuzED\_FlyExecut\Release
 
 [Debugging]
 DebugSourceDirs=$(BCB)\source\vcl

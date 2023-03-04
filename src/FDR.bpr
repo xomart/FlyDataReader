@@ -3,7 +3,7 @@
 <PROJECT>
   <MACROS>
     <VERSION value="BCB.06.00"/>
-    <PROJECT value="C:\Users\XOMART\Documents\VSoyuz\_FlyExecut\Debug\FDR.exe"/>
+    <PROJECT value="FDR.exe"/>
     <OBJFILES value="FDR.obj MForm.obj"/>
     <RESFILES value="FDR.res"/>
     <IDLFILES value=""/>
@@ -64,31 +64,33 @@
 
   <IDEOPTIONS>
 [Version Info]
-IncludeVerInfo=0
+IncludeVerInfo=1
 AutoIncBuild=0
-MajorVer=1
-MinorVer=0
+MajorVer=4
+MinorVer=41
 Release=0
 Build=0
 Debug=0
 PreRelease=0
-Special=0
+Special=1
 Private=0
 DLL=0
 Locale=1049
 CodePage=1251
 
 [Version Info Keys]
-CompanyName=
-FileDescription=
-FileVersion=1.0.0.0
-InternalName=
-LegalCopyright=
+CompanyName=SoyuzDeveloperTeam
+FileDescription=Fly Data Reader
+FileVersion=4.41.0.0
+InternalName=FDR
+LegalCopyright=SDT
 LegalTrademarks=
 OriginalFilename=
-ProductName=
+ProductName=VSoyuz
 ProductVersion=1.0.0.0
-Comments=
+Comments=Программа чтения результатов моделирования
+SpecialBuild=
+VSoyuzDEVCODE=VS.014.02-R
 
 [HistoryLists\hlIncludePath]
 Count=2
@@ -107,6 +109,10 @@ Item0=$(BCB)\source\vcl
 [HistoryLists\hlConditionals]
 Count=1
 Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=C:\Users\XOMART\Documents\FlyDataReader\FlyDataReader\other
 
 [HistoryLists\hlFinalOutputDir]
 Count=6

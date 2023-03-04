@@ -636,7 +636,6 @@ void __fastcall TForm1::startbClick(TObject *Sender)
 {
 int Rc;
 Rc = WinExec("Fly.exe", SW_SHOWMINNOACTIVE);
-panr->Caption=IntToStr(Rc);
 TC->Series[0]->Clear();
 Hgr->Series[0]->Clear();
 resultlv->Clear();
@@ -766,4 +765,6 @@ kadr=0;
     }        
 }
 //---------------------------------------------------------------------------
+
+
 
