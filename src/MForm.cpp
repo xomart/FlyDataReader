@@ -272,7 +272,11 @@ int save(char * filename, struct TFlyData * st, int n)
     fclose(fp);
     return 0;
 }
- 
+
+void loadtoslvl(int n, struct TFlyData * st){
+ Form1->svlv->Items->Add(IntToStr(n)+" - "+st->t.h+":"+st->t.m+":"+st->t.s);
+}
+
 // загрузка из файла массива структур
 
 void loadload(AnsiString filename){ // V1   WORKING
@@ -286,6 +290,7 @@ ifstream fin;
 {
     kadr++;
     AddXY(peoplej[k].dolgota,peoplej[k].shirota);   // Fligt Trace
+    loadtoslvl(k,&peoplej[k]);
     AddXYh(k,peoplej[k].R);                         // H
     additem(&peoplej[k]);
 } }
@@ -447,7 +452,7 @@ addbf73(54);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button1Click(TObject *Sender)
+void __fastcall TForm1::ManualLoadClick(TObject *Sender)
 {
 TC->Series[0]->Clear();
 Hgr->Series[0]->Clear();
@@ -604,5 +609,27 @@ kadr=0;
 }
 //---------------------------------------------------------------------------
 
+void add2vs(double v1[2], double v2[2]){
 
+}
+
+
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+double x[2], y[2];
+x[0] = peoplej[1].X;
+y[0] = peoplej[1].Y;
+x[1] = peoplej[2].X;
+y[1] = peoplej[2].Y;
+sverxy->BottomAxis->SetMinMax(x[0]-500,x[0]+500);
+sverxy->LeftAxis->SetMinMax(y[0]-500,y[0]+500);
+sverxy->Series[0]->AddXY(x[0],y[0],"", clRed);
+sverxy->Series[0]->AddXY(x[1],y[1],"", clGreen);
+
+/*
+
+*/
+}
+//---------------------------------------------------------------------------
 

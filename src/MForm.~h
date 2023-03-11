@@ -16,6 +16,7 @@
 #include <TeeProcs.hpp>
 #include <Dialogs.hpp>
 #include <Menus.hpp>
+#include <BubbleCh.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -275,10 +276,13 @@ __published:	// IDE-managed Components
         TEdit *Edit47;
         TLabel *Label62;
         TMemo *Memo1;
-        TButton *Button1;
+        TButton *ManualLoad;
         TLabel *Label74;
         TLabel *Label76;
         TLabel *Label77;
+        TChart *sverxy;
+        TButton *Button1;
+        TLineSeries *Series4;
         void __fastcall Button3Click(TObject *Sender);
         void __fastcall Button4Click(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -289,9 +293,7 @@ __published:	// IDE-managed Components
         void __fastcall FormShow(TObject *Sender);
         void __fastcall Button11Click(TObject *Sender);
         void __fastcall N1Click(TObject *Sender);
-        void __fastcall Button1Click(TObject *Sender);
-        void __fastcall Button12Click(TObject *Sender);
-        void __fastcall Button13Click(TObject *Sender);
+        void __fastcall ManualLoadClick(TObject *Sender);
         void __fastcall Button15Click(TObject *Sender);
         void __fastcall startbClick(TObject *Sender);
         void __fastcall d4Click(TObject *Sender);
@@ -305,6 +307,7 @@ __published:	// IDE-managed Components
           TMouseButton Button, TShiftState Shift, int X, int Y);
         void __fastcall ListBox2Click(TObject *Sender);
         void __fastcall Panel1Click(TObject *Sender);
+        void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);

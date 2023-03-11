@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 343
-  Top = 262
+  Left = 671
+  Top = 211
   Width = 925
   Height = 550
   Caption = #1055#1054' '#1063#1090#1077#1085#1080#1103' '#1088#1077#1079#1091#1083#1100#1090#1072#1090#1086#1074' '#1088#1072#1073#1086#1090#1099' '#1052#1044' Fly'
@@ -28,9 +28,9 @@ object Form1: TForm1
     Top = 0
     Width = 909
     Height = 511
-    ActivePage = TabSheet7
+    ActivePage = TabSheet16
     Align = alClient
-    TabIndex = 6
+    TabIndex = 9
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1088#1090#1072
@@ -41363,7 +41363,8 @@ object Form1: TForm1
             Font.Name = 'Consolas'
             Font.Style = []
             Lines.Strings = (
-              #1041#1072#1083#1083#1080#1089#1090#1080#1095#1077#1089#1082#1072#1103' '#1092#1086#1088#1084#1072)
+              #1041#1072#1083#1083#1080#1089#1090#1080#1095#1077#1089#1082#1072#1103' '#1092#1086#1088#1084#1072
+              #1056#1077#1082#1090#1072#1083#1100#1085#1099#1081' '#1072#1085#1072#1083#1080#1079#1072#1090#1086#1088)
             ParentFont = False
             TabOrder = 0
           end
@@ -50301,7 +50302,7 @@ object Form1: TForm1
               end
             end
             object GroupBox25: TGroupBox
-              Left = 128
+              Left = 125
               Top = 8
               Width = 249
               Height = 113
@@ -50472,14 +50473,14 @@ object Form1: TForm1
         TabOrder = 3
         Text = '200'
       end
-      object Button1: TButton
+      object ManualLoad: TButton
         Left = 8
         Top = 56
         Width = 193
         Height = 25
         Caption = #1056#1091#1095#1085#1072#1103' '#1079#1072#1075#1088#1091#1079#1082#1072' '#1088#1077#1079#1091#1083#1100#1090#1072#1090#1086#1074
         TabOrder = 4
-        OnClick = Button1Click
+        OnClick = ManualLoadClick
       end
     end
     object TabSheet13: TTabSheet
@@ -50820,9 +50821,63 @@ object Form1: TForm1
         Left = 24
         Top = 24
         Width = 633
-        Height = 65
+        Height = 97
         ItemHeight = 13
         TabOrder = 0
+      end
+      object sverxy: TChart
+        Left = 650
+        Top = 232
+        Width = 250
+        Height = 250
+        BackWall.Brush.Color = clWhite
+        BackWall.Brush.Style = bsClear
+        Foot.Visible = False
+        MarginBottom = 1
+        MarginLeft = 1
+        MarginRight = 2
+        MarginTop = 1
+        Title.Text.Strings = (
+          'TChart')
+        Title.Visible = False
+        Chart3DPercent = 100
+        DepthAxis.Visible = True
+        Legend.Visible = False
+        View3D = False
+        View3DOptions.Elevation = 333
+        View3DOptions.Orthogonal = False
+        View3DOptions.Perspective = 0
+        View3DOptions.Rotation = 317
+        View3DOptions.Zoom = 75
+        View3DOptions.ZoomText = False
+        BevelInner = bvRaised
+        BorderStyle = bsSingle
+        TabOrder = 1
+        object Series4: TLineSeries
+          Marks.ArrowLength = 8
+          Marks.Visible = False
+          SeriesColor = clRed
+          Pointer.InflateMargins = True
+          Pointer.Style = psRectangle
+          Pointer.Visible = True
+          XValues.DateTime = False
+          XValues.Name = 'X'
+          XValues.Multiplier = 1
+          XValues.Order = loAscending
+          YValues.DateTime = False
+          YValues.Name = 'Y'
+          YValues.Multiplier = 1
+          YValues.Order = loNone
+        end
+      end
+      object Button1: TButton
+        Left = 816
+        Top = 136
+        Width = 75
+        Height = 25
+        Caption = 'Button1'
+        TabOrder = 2
+        OnClick = Button1Click
       end
     end
   end
