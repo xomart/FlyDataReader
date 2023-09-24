@@ -1,4 +1,5 @@
 # Fly Data Reader #
+[![Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://matrix.to/#/!kKJlUmUzNymgSLfXrj:gitter.im?via=gitter.im)
 Программа чтения и анализа результатов работы математической модели движения <a href="https://github.com/XOMART/Fly_VSoyuzED" target="_blank">Fly</a> <br>
 Автор: Смирягин М. И. <br>
 Email: misha@xomart.ru <br>
