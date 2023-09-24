@@ -1,7 +1,7 @@
 # Fly Data Reader 
 
 [![Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://matrix.to/#/!kKJlUmUzNymgSLfXrj:gitter.im?via=gitter.im)
- ![Discord Shield](https://discordapp.com/api/guilds/628088895472402432/widget.png?style=shield)
+ [![Discord Shield](https://discordapp.com/api/guilds/628088895472402432/widget.png?style=shield)](discord.com/invite/GWXzjFD)
 
 Программа чтения и анализа результатов работы математической модели движения <a href="https://github.com/XOMART/Fly_VSoyuzED" target="_blank">Fly</a> <br>
 Автор: Смирягин М. И. <br>
@@ -17,4 +17,4 @@ Email: soyuz.developer@yandex.ru <br>
 Так же можно самому составить набор параметров начальных условий и отработать его.
 
 ## Связь
-![Discord Banner 3](https://discordapp.com/api/guilds/628088895472402432/widget.png?style=banner3)
+[![Discord Banner 3](https://discordapp.com/api/guilds/628088895472402432/widget.png?style=banner3)](discord.com/invite/GWXzjFD)
