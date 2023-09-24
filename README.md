@@ -1,7 +1,7 @@
 # Fly Data Reader 
 
 [![Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://matrix.to/#/!kKJlUmUzNymgSLfXrj:gitter.im?via=gitter.im)
- [![Discord Shield](https://discordapp.com/api/guilds/628088895472402432/widget.png?style=shield)](discord.com/invite/GWXzjFD)
+ [![Discord Shield](https://discordapp.com/api/guilds/628088895472402432/widget.png?style=shield)](https://discord.com/invite/GWXzjFD)
 
 Программа чтения и анализа результатов работы математической модели движения <a href="https://github.com/XOMART/Fly_VSoyuzED" target="_blank">Fly</a> <br>
 Автор: Смирягин М. И. <br>
